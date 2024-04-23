@@ -22,7 +22,7 @@ export const useGetAllTweets = () => {
     const query = useQuery({
         queryKey: ["all-tweets"],
         queryFn: () => graphqlClient.request(getAllTweetsQuery)
-    })
+    });
 
     return { ...query, tweets: query.data?.getAllTweets };
-}
+};
