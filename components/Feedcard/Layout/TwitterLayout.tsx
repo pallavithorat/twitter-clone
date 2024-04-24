@@ -12,6 +12,7 @@ import { graphqlClient } from '@/clients/api';
 import { verifyUserGoogleTokenQuery } from '@/graphql/query/user';
 import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
+import { DiVim } from 'react-icons/di';
 
 interface TwitterSideBarButton{
     title: string;
@@ -154,12 +155,45 @@ const Twitterlayout: React.FC<TwitterlayoutProps> = (props) => {
            
         </div>
         <div className="col-span-0 sm:col-span-3 p-5">
-          {!user && (<div className="p-5 bg-slate-700 rounded-lg">
+          {!user ? (<div className="p-5 bg-slate-700 rounded-lg">
             <h1 className="my-2 text-2xl">New To Twitter?</h1>
        <GoogleLogin onSuccess={handleLoginWithGoogle}/>
 
        </div>
-       )}
+       ):  
+       <div className="px-4 py-3 bg-slate-800 rounded-lg">
+        <h1 className="my-2 text-2xl mb-5">Users you may know</h1>
+        { user?.recommendedUsers.map((el) => (
+        <div className="flex items-center gap-3 mt-2" key={el?.id}>
+           { el?.profileImageURL && (
+            
+            <Image 
+            src={el?.profileImageURL}
+            alt='user-image'
+            className='rounded-full'
+            width={60}
+            height={60}
+            />
+            
+        )}
+          <div>
+
+          <div className='text-lg' >
+             {el?.firstName} {el?.lastName}
+         </div>
+         <Link href={`/${el?.id}`} className='bg-white text-black text-sm px-5 py-1 rounded-lg w-full'>View</Link>
+
+          </div>
+    
+         </div>
+        
+        ))}
+        
+        </div>}
+
+       
+
+       
 
         </div>
       </div>
