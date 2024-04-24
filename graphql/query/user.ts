@@ -15,6 +15,19 @@ export const getCurrentUserQuery = graphql(
             firstName
             email
             lastName
+            followers {
+                id
+                firstName
+                lastName
+                profileImageURL
+              }
+              following {
+                id
+                firstName
+                lastName
+                profileImageURL
+    
+              }
             tweets{
                 id
                 content
@@ -37,6 +50,20 @@ export const getCurrentUserQuery = graphql(
           firstName
           lastName
           profileImageURL
+
+          followers {
+            id
+            firstName
+            lastName
+            profileImageURL
+          }
+          following {
+            id
+            firstName
+            lastName
+            profileImageURL
+
+          }
           tweets {
             content
             id
