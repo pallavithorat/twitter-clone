@@ -98,7 +98,7 @@ const Twitterlayout: React.FC<TwitterlayoutProps> = (props) => {
       
     return (
         <div>
-             <div className="grid grid-cols-12 h-screen w-screen sm:px-56">
+        <div className="grid grid-cols-12 h-screen w-screen sm:px-56">
         <div className="col-span-2 sm:col-span-3 span  pt-1 flex sm:justify-end pr-4 relative">
         <div>
         <div className="text-2xl h-fit w-fit hover:bg-gray-800 rounded-full p-2 cursor-pointer transition-all">
@@ -121,33 +121,38 @@ const Twitterlayout: React.FC<TwitterlayoutProps> = (props) => {
             <div className="mt-5 px-3">
                <button className="hidden sm:block bg-[#1d9bf0] font font-semibold text-lg py-2 px-4 rounded-full w-full">Tweet</button>
             </div>
-            <div className="mt-5 px-3">
+            {/* <div className="mt-5 px-3">
                <button className="block sm:hidden bg-[#1d9bf0] font font-semibold text-lg py-2 px-4 rounded-full w-full"><BsTwitter/></button>
-            </div>
+            </div> */}
         </div>
         </div>
 
         {
           user && (
-            <div className="absolute bottom-5, flex gap-2 items-center bg-slate-800 px-3 py-2 rounded-full">
+          <div className="absolute bottom-5"> 
+          <div className="flex gap-2 items-center bg-slate-800 px-3 py-2 rounded-full">
           {user && user.profileImageURL && (
           <Image
-          className="rounded-full"
           src={user?.profileImageURL}
           alt="user-image"
           height={50}
           width={50}
+          className="lg:w-14 lg:h-14 rounded-full"
           />
           )}
           <div className='hidden sm:block'>
-          <h3 className="text-xl">
-          {user.firstName}
-          {user.lastName}
-          </h3>
+          
+          <div className="text-lg">
+                  {user.firstName} {user.lastName}
+            </div>
+
+          </div>
           </div>
         </div>
           )}
+
         </div>
+
         <div className="col-span-10 sm:col-span-5 border-r-[1px] border-l-[1px] h-screen overflow-scroll border-gray-600">
 
             {props.children}
@@ -204,3 +209,5 @@ const Twitterlayout: React.FC<TwitterlayoutProps> = (props) => {
 };
 
 export default Twitterlayout;
+
+
